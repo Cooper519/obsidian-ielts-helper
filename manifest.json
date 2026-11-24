@@ -1,0 +1,9 @@
+{
+  "id": "ielts-helper",
+  "name": "IELTS Helper",
+  "version": "2.0.1",
+  "minAppVersion": "1.5.0",
+  "description": "雅思学习服务入口、学习仪表盘与轻量更新。",
+  "author": "Cooper",
+  "isDesktopOnly": true
+}

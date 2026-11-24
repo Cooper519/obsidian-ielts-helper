@@ -1,0 +1,147 @@
+.ielts-helper-settings {
+  max-width: 800px;
+  margin-inline: auto;
+  padding-block-end: 40px;
+  container-type: inline-size;
+  color: var(--text-normal);
+}
+.ielts-helper-settings .ielts-helper-title {
+  margin: 0 0 1em;
+  font-size: 1.55em;
+}
+.ielts-helper-section-title {
+  margin: 1.6em 0 0.45em;
+  font-size: 1.15em;
+}
+.ielts-helper-settings .setting-item-info {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.ielts-helper-settings .setting-item-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+.ielts-helper-settings .setting-item-control input:not([type="checkbox"]) {
+  min-width: 0;
+  max-width: 100%;
+  flex: 1 1 12em;
+  box-sizing: border-box;
+}
+.ielts-helper-settings .setting-item-control select {
+  max-width: 100%;
+  min-width: min(12em, 100%);
+}
+.ielts-helper-settings .setting-item-control select.is-measuring {
+  inset-inline: auto 0;
+  min-width: 0;
+}
+.ielts-helper-settings .setting-item:has(input:not([type="checkbox"])) {
+  flex-wrap: wrap;
+}
+.ielts-helper-settings
+  .setting-item:has(input:not([type="checkbox"]))
+  .setting-item-control {
+  flex: 1 1 16em;
+}
+.ielts-helper-settings
+  .setting-item:has(input:not([type="checkbox"]))
+  .setting-item-info {
+  flex: 1 1 14em;
+}
+.ielts-helper-settings [hidden] {
+  display: none;
+}
+.ielts-helper-dirty {
+  color: var(--text-warning);
+}
+.ielts-helper-local {
+  margin-block: 1em;
+}
+.ielts-helper-local summary {
+  color: var(--text-accent);
+  cursor: pointer;
+}
+@container (max-width: 440px) {
+  .ielts-helper-settings .setting-item {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .ielts-helper-settings .setting-item-control {
+    justify-content: flex-start;
+  }
+  /* 宿主在窄弹窗内会将行改为纵向 Flex。显式单列避免宽度基准变成数百像素的行高。 */
+  .ielts-helper-settings .setting-item:has(input:not([type="checkbox"])) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ielts-helper-settings
+    .setting-item:has(input:not([type="checkbox"]))
+    .setting-item-control {
+    width: 100%;
+    flex-direction: row;
+  }
+}
+.ielts-helper-warning {
+  padding: 12px;
+  color: var(--text-warning);
+  background: var(--background-secondary);
+  border-left: 3px solid var(--text-warning);
+}
+.ielts-helper-dash {
+  padding: 24px;
+  color: var(--text-normal);
+  background: var(--background-primary);
+}
+.ielts-helper-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+.ielts-helper-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+.ielts-helper-stats strong {
+  display: block;
+  font-size: 28px;
+  margin-top: 8px;
+}
+.ielts-helper-stats span,
+.ielts-helper-muted {
+  color: var(--text-muted);
+}
+.ielts-helper-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+  gap: 24px;
+}
+.ielts-helper-chart {
+  min-width: 0;
+  padding: 16px;
+  background: var(--background-secondary);
+  border-radius: var(--radius-m);
+}
+.ielts-helper-chart canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.ielts-helper-modal {
+  padding: 8px;
+  color: var(--text-normal);
+  max-height: 75vh;
+  overflow-y: auto;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.ielts-helper-status {
+  cursor: pointer;
+}

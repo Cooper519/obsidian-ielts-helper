@@ -1,0 +1,40 @@
+name: 发布后刷新 VPS 清单
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 已发布的稳定插件标签（vX.Y.Z）
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (!github.event.release.draft && !github.event.release.prerelease &&
+      startsWith(github.event.release.tag_name, 'v'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      # 通知程序来自默认分支；手动输入的标签只是待核对的数据。
+      - name: 读取通知脚本
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          sparse-checkout: scripts/notify_vps.py
+          sparse-checkout-cone-mode: false
+      - name: 确认订阅已经提供新版插件
+        env:
+          NOTIFY_KIND: plugin
+          NOTIFY_TAG: ${{ inputs.tag || github.event.release.tag_name }}
+          VPS_FEED_URL: ${{ vars.VPS_FEED_URL }}
+          VPS_FEED_TOKEN: ${{ secrets.VPS_FEED_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -X utf8 scripts/notify_vps.py --verify-release

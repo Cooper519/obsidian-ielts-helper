@@ -1,0 +1,22 @@
+{
+  "name": "obsidian-ielts-helper",
+  "version": "2.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "pack:local": "npm run build && python scripts/pack-local.py",
+    "pack:release": "npm run build && python scripts/pack-local.py --release",
+    "build": "node esbuild.config.mjs",
+    "test": "tsx --import ./tests/isolation.mjs --test tests/*.test.ts",
+    "audit:css": "node scripts/audit-css.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/yauzl": "^2.10.3",
+    "esbuild": "^0.25.0",
+    "obsidian": "^1.8.7",
+    "tsx": "^4.20.0",
+    "typescript": "^5.7.0",
+    "yauzl": "^3.2.0"
+  }
+}
